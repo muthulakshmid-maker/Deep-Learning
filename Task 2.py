@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 
 
 def softmax(logits):
-    # Subtract maximum for numerical stability
     exp_values = np.exp(logits - np.max(logits))
     probabilities = exp_values / np.sum(exp_values)
     return probabilities
