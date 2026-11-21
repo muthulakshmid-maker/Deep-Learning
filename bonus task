@@ -1,0 +1,53 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def relu(x):
+    return np.maximum(0, x)
+
+
+def leaky_relu(x, alpha=0.01):
+    return np.where(x > 0, x, alpha * x)
+
+
+x = np.linspace(-6, 6, 200)
+
+
+relu_values = relu(x)
+
+leaky_relu_values = leaky_relu(x)
+
+
+print("========== RELU ==========")
+print(relu_values[:10])
+
+print("\n========== LEAKY RELU ==========")
+print(leaky_relu_values[:10])
+
+
+plt.figure(figsize=(10, 6))
+
+plt.plot(x, relu_values, label="ReLU", linewidth=2)
+
+plt.plot(
+    x,
+    leaky_relu_values,
+    label="Leaky ReLU",
+    linewidth=2
+)
+
+plt.title("ReLU vs Leaky ReLU")
+plt.xlabel("Input")
+plt.ylabel("Output")
+
+plt.axhline(0)
+plt.axvline(0)
+
+plt.legend()
+plt.grid(True)
+
+plt.savefig("relu_vs_leaky_relu.png")
+
+plt.show()
+
+print("\nGraph saved successfully!")
